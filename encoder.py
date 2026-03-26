@@ -4,9 +4,11 @@ from imutils import rotate
 
 def encode_image(image):
     image = cv.imread(image)
-    image = cv.cvtColor(image , cv.COLOR_RGB2GRAY)
-    h,w,c = image.shape
-    print(f"Image Encoded ans Saved as ${image}")
+    # image = cv.cvtColor(image , cv.COLOR_RGB2GRAY)
+    # h,w = image.shape
+    modulated_image = modulation(image)
+    cv.imwrite("encoded_image.jpg" , modulated_image)
+    print("Image Encoded ans Saved as encoded_image.jpg")
 
 
 def modulation(image):
@@ -14,7 +16,7 @@ def modulation(image):
     mul = np.random.randint(1 , 10) 
     image = (mul * image + val) % 256
     key = (val , mul)
-    return image , key , "mod"
+    return image
 
 # def generate_key(op): 
 #         if op == "mod_add"
